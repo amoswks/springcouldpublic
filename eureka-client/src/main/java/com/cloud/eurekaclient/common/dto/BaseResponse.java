@@ -1,4 +1,4 @@
-package com.cloud.eurekaclient.dto;
+package com.cloud.eurekaclient.common.dto;
 
 import java.io.Serializable;
 
@@ -67,7 +67,7 @@ public class BaseResponse<T> implements Serializable {
      * @param <E>
      * @return
      */
-    public static <E> BaseResponse  success(E data){
+    public static <E> BaseResponse success(E data){
         return new BaseResponse<>(0,"success",data);
     }
 

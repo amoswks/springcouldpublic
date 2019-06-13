@@ -1,4 +1,4 @@
-package com.cloud.eurekaclient.dto;
+package com.cloud.eurekaclient.common.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

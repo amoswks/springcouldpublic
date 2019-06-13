@@ -1,4 +1,4 @@
-package com.cloud.eurekaclient.config;
+package com.cloud.eurekaclient.common.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

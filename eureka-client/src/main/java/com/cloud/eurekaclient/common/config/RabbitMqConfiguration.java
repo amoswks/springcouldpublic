@@ -1,4 +1,4 @@
-package com.cloud.eurekaclient.config;
+package com.cloud.eurekaclient.common.config;
 
 
 
