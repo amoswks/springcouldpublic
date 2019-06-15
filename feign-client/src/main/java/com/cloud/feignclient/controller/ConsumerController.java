@@ -3,17 +3,17 @@ package com.cloud.feignclient.controller;
 
 import com.cloud.feignclient.HelloService.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ConsumerController {
-    @Autowired
+
+    @Autowired(required = false)
     HelloService helloService;
 
-    @RequestMapping(value = "feign-consumer", method = RequestMethod.GET)
-    public String helloConsumer() {
-        return helloService.hello();
+    @RequestMapping(value = "feign-consumer/{age}", method = RequestMethod.GET)
+    public String helloConsumer(@PathVariable("age") int age) {
+        return helloService.hello(age);
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SchedualSeveiceHiHyHytrix implements HelloService {
     @Override
-    public String hello() {
+    public String hello(int age) {
         return "出错啦～";
     }
 }

@@ -21,6 +21,7 @@
         <common-lang3.version>3.8.1</common-lang3.version>
         <pagehelper-spring-boot-starter.version>1.2.3</pagehelper-spring-boot-starter.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <mapper-spring-boot-starter.version>1.2.3</mapper-spring-boot-starter.version>
     </properties>
 
     <dependencies>
@@ -128,6 +129,31 @@
             <artifactId>spring-session-data-redis</artifactId>
             <version>2.1.4.RELEASE</version>
         </dependency>
+
+        <!-- AspectJ -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.6.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.6.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>4.3.9.RELEASE</version>
+        </dependency>
+        <!-- 引入AOP依赖end-->
     </dependencies>
 
     <dependencyManagement>

@@ -6,11 +6,8 @@ import com.cloud.eurekaclient.util.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
@@ -38,7 +35,8 @@ public class HelloController {
 
     // HttpServletRequest request
     @RequestMapping(value = "hello", method = RequestMethod.GET)
-    public String index() {
+    public String index(@RequestHeader("age") int age) {
+        System.out.println("年龄为："+age);
         String result = sender.send();
         System.out.println(redisService.getCache("hello"));
         Object o = httpSession.getAttribute("springboot");
