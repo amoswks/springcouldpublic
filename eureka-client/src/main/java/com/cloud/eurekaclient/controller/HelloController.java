@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
@@ -35,15 +36,22 @@ public class HelloController {
 
     // HttpServletRequest request
     @RequestMapping(value = "hello", method = RequestMethod.GET)
-    public String index(@RequestHeader("age") int age) {
+    public String index(@RequestHeader("age") int age, HttpServletRequest request) {
         System.out.println("年龄为："+age);
         String result = sender.send();
         System.out.println(redisService.getCache("hello"));
+        System.out.println("sessionID" +request.getSession().getId());
+        if (httpSession.getAttribute(request.getSession().getId()) != null){
+            String res = "端口=" + request.getLocalPort() +  " sessionId=" + request.getSession().getAttribute(httpSession.getId()) +"<br/>";
+            System.out.println("res值：：" + res);
+        }else {
+            httpSession.setAttribute(request.getSession().getId(),"user is Login");
+
+        }
         Object o = httpSession.getAttribute("springboot");
         httpSession.setAttribute("springboot", o);
         redisService.putCache("hello","登陆成功");
 
-        //  return "端口=" + request.getLocalPort() +  " sessionId=" + request.getSession().getId() +"<br/>"+o;
         StringBuffer uriList = new StringBuffer("Hello World " + port + " 端口为您服务！<br>");
         return uriList.toString() + " ++++" + result;
     }

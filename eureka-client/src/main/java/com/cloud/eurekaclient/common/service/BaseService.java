@@ -24,5 +24,17 @@ public interface BaseService<T> {
      */
     List<T> selectList(T entity);
 
+    /**
+     * 根据ID进行更新
+     * @param entity
+     * @return
+     */
+    int updateById(T entity);
 
+    /**
+     * 根据ID进行删除
+     * @param id
+     * @return
+     */
+    int delById(Object id);
 }

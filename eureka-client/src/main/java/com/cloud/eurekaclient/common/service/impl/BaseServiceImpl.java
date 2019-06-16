@@ -24,4 +24,14 @@ public abstract class BaseServiceImpl<M extends Mapper<T>,T> implements BaseServ
     public List<T> selectList(T entity) {
         return mapper.select(entity);
     }
+
+    @Override
+    public int updateById(T entity) {
+         return mapper.updateByPrimaryKey(entity);
+    }
+
+    @Override
+    public int delById(Object id) {
+        return mapper.deleteByPrimaryKey(id);
+    }
 }
