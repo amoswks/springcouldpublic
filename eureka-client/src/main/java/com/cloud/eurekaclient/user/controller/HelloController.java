@@ -1,12 +1,17 @@
-package com.cloud.eurekaclient.controller;
+package com.cloud.eurekaclient.user.controller;
 
 
 import com.cloud.eurekaclient.redis.service.RedisService;
+import com.cloud.eurekaclient.user.model.City;
+import com.cloud.eurekaclient.user.service.CityService;
 import com.cloud.eurekaclient.util.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,6 +30,9 @@ public class HelloController {
 
     @Autowired
     RedisService redisService;
+
+    @Autowired
+    CityService cityService;
     /**
      * Object o = httpSession.getAttribute("springboot");
      * httpSession.setAttribute("springboot", o);
@@ -41,6 +49,8 @@ public class HelloController {
         String result = sender.send();
         System.out.println(redisService.getCache("hello"));
         System.out.println("sessionID" +request.getSession().getId());
+        City city = cityService.findOne(1L);
+        System.out.println("city infomation:" + city);
         if (httpSession.getAttribute(request.getSession().getId()) != null){
             String res = "端口=" + request.getLocalPort() +  " sessionId=" + request.getSession().getAttribute(httpSession.getId()) +"<br/>";
             System.out.println("res值：：" + res);

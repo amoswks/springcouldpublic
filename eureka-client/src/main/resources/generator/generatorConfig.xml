@@ -11,7 +11,7 @@
         <property name="endingDelimiter" value="`"/>
         <property name="javaFileEncoding" value="UTF-8"/>
        
-       <!-- <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+  <!--      <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
         </plugin>-->
       		
@@ -21,11 +21,11 @@
                         password="123456">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.cloud.eurekaclient.domain" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.cloud.eurekaclient.user.model" targetProject="src/main/java"/>
 
         <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources"/>
 
-        <javaClientGenerator targetPackage="com.cloud.eurekaclient.dao" targetProject="src/main/java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="com.cloud.eurekaclient.user.dao" targetProject="src/main/java" type="XMLMAPPER" />
 
         <table tableName="city" domainObjectName="City">
            <!-- <generatedKey column="id" sqlStatement="Mysql" identity="true"/> -->
