@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CityServiceImpl implements CityService {
-    @Autowired
+    @Autowired(required = false)
     public CityMapper cityMapper;
     @Override
     public City findOne(Long id) {
