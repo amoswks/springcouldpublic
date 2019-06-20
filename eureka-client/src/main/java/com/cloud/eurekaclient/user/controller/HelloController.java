@@ -49,7 +49,7 @@ public class HelloController {
         String result = sender.send();
         System.out.println(redisService.getCache("hello"));
         System.out.println("sessionID" +request.getSession().getId());
-        City city = cityService.findOne(1L);
+        City city = cityService.selectById(1L);
         System.out.println("city infomation:" + city);
         if (httpSession.getAttribute(request.getSession().getId()) != null){
             String res = "端口=" + request.getLocalPort() +  " sessionId=" + request.getSession().getAttribute(httpSession.getId()) +"<br/>";

@@ -8,12 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CityServiceImpl implements CityService {
-    @Autowired(required = false)
-    public CityMapper cityMapper;
-    @Override
-    public City findOne(Long id) {
-        City city = cityMapper.selectByPrimaryKey(id);
-        return city;
-    }
+public class CityServiceImpl extends BaseServiceImpl<CityMapper, City>  implements CityService {
+
 }

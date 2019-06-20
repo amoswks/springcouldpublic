@@ -22,6 +22,7 @@
         <pagehelper-spring-boot-starter.version>1.2.3</pagehelper-spring-boot-starter.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <mapper-spring-boot-starter.version>1.2.3</mapper-spring-boot-starter.version>
+        <weixin-java-mp.version>2.9.0</weixin-java-mp.version>
     </properties>
 
     <dependencies>
@@ -158,6 +159,11 @@
             <version>4.3.9.RELEASE</version>
         </dependency>
         <!-- 引入AOP依赖end-->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>${weixin-java-mp.version}</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
