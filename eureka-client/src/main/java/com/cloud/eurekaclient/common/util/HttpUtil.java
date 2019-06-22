@@ -4,10 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 public class HttpUtil {
@@ -56,6 +56,36 @@ public class HttpUtil {
        return sendGet(url,"");
     }
 
+    public static String sendGet(String url,Map<String,String> params){
+        return sendGet(url,paramString(params));
+    }
+
+    /**
+     * map转换为toString
+     * @param param
+     * @return
+     */
+    public static String paramString(Map<String,String> param){
+        if (param == null || param.isEmpty()){
+            return null;
+        }
+        Iterator<Map.Entry<String,String>> it = param.entrySet().iterator();
+        StringBuffer br = new StringBuffer();
+        for (int i = 0; it.hasNext();i++){
+            if (i == param.size()-1){
+                Map.Entry<String,String> entry = it.next();
+                String key = entry.getKey();
+                String value = entry.getValue();
+                br.append(key).append("=").append(value);
+            }else {
+                Map.Entry<String,String> entry = it.next();
+                String key = entry.getKey();
+                String value = entry.getValue();
+                br.append(key).append("=").append(value).append("&");
+            }
+        }
+        return br.toString();
+    }
     /**
      * 发送post请求
      * @param url
@@ -68,7 +98,7 @@ public class HttpUtil {
         BufferedReader br = null;
         try{
             URL realURL = new URL(url);
-            URLConnection connection  = realURL.openConnection();
+            HttpURLConnection connection  = (HttpURLConnection) realURL.openConnection();
             // 设置通用的请求属性
             connection.setRequestProperty("accept", "*/*");
             connection.setRequestProperty("connection", "Keep-Alive");
@@ -88,16 +118,21 @@ public class HttpUtil {
 
             //建立实际的连接
             connection.connect();
-            Map<String, List<String>> head = connection.getHeaderFields();
-            System.out.println(head);
+            if (connection.getResponseCode() == 200){
+                Map<String, List<String>> head = connection.getHeaderFields();
+                System.out.println(head);
 
-            //获得请求正文
-            String line = "";
-            br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                //获得请求正文
+                String line = "";
+                br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-            while ((line = br.readLine()) != null){
-                result.append(line);
+                while ((line = br.readLine()) != null){
+                    result.append(line);
+                }
+            }else {
+                return "返回错误参数:" + connection.getResponseCode();
             }
+
 
         }catch (Exception e){
             log.error("post请求失败！");
@@ -113,4 +148,6 @@ public class HttpUtil {
         }
         return result.toString();
     }
+
+
 }
